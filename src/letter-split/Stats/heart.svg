@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 300 300" version="1.1" width="30" height="30" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <radialGradient id="heartCenter" cx="30%" cy="40%" r="90%">
+            <stop offset="0%" stop-color="#911"/>
+            <stop offset="20%" stop-color="#a22"/>
+            <stop offset="50%" stop-color="#a33"/>
+            <stop offset="70%" stop-color="#a22"/>
+            <stop offset="80%" stop-color="#911"/>
+            <stop offset="100%" stop-color="#700"/>
+        </radialGradient>
+    </defs>
+    <path d="M150,40 c0,-60 150,-50 150,30 c0,50 0,80 -100,160c-30,20 -40,20 -50,50z M150,40 c0,-60 -150,-50 -150,30 c0,50 0,80 80,160c30,25 30,30 70,50" fill="url(#heartCenter)"/>
+    <path d="M130,40 c0,-40 -110,-40 -120,30 c0,30 30,-50 120,-30z" fill="hsla(0,0%,100%,.7)"/>
+</svg>

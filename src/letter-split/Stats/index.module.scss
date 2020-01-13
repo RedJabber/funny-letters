@@ -1,0 +1,21 @@
+
+.scoreArea {
+  position: fixed;
+  top: 0;
+  left: 15px;
+  right: 15px;
+  height: 40px;
+  display: flex;
+};
+
+.title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  display: block;
+  text-align: center;
+  color: #dbdbdb;
+  font-size: 32px;
+  text-transform: uppercase;
+};

@@ -1,0 +1,19 @@
+.landing {
+  flex: 1 1 0%;
+  overflow: hidden;
+  border: 2px solid;
+  border-radius: 6px;
+  margin: 15px 0;
+  display: flex;
+  position: relative;
+
+  &.consonant {
+    border-color: hsl(240, 100%, 50%);
+  }
+  &.vowel {
+    border-color: hsl(0, 70%, 70%);
+  }
+  &.letter-widget-hover {
+    background: hsla(120, 30%, 50%, .2);
+  }
+}
