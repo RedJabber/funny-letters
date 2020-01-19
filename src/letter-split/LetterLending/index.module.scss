@@ -16,4 +16,26 @@
   &.letter-widget-hover {
     background: hsla(120, 30%, 50%, .2);
   }
+
+}
+.lettersSet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  padding: 2px 6px;
+  flex-flow: row wrap;
+
+  .consonant > & {
+    color: hsla(240, 50%, 50%, .5);
+  }
+  .vowel > & {
+    color: hsla(0, 50%, 50%, .5);
+  }
+  > span {
+    padding: 0 2px;
+    font-size: 32px;
+  }
 }

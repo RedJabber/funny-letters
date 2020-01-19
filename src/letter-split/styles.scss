@@ -86,27 +86,7 @@
   &landing-space {
     flex: 0 0 15px;
   }
-  &letters-set {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    display: flex;
-    justify-content: center;
-    padding: 2px 6px;
-    flex-flow: row wrap;
 
-    .consonant-letters > & {
-      color: hsla(240, 50%, 50%, .5);
-    }
-    .vowel > & {
-      color: hsla(0, 50%, 50%, .5);
-    }
-    > span {
-      padding: 0 2px;
-      font-size: 32px;
-    }
-  }
   &counters_group {
     background: hsla(0, 0%, 50%, .4);
     flex: 1 1 0px;

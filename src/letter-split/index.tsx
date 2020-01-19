@@ -16,9 +16,9 @@ const LetterSplitGame: FunctionComponent = () => (
             <div className="fl__landings">
                 <div className="fl__landing-space"/>
 
-                <LetterLanding colorSchema="consonant" lettersSet="йцкнгшщзхфвпрлджчсмтб"/>
+                <LetterLanding colorSchema="consonant" lettersSet="йцкнгшщзхфвпрлджчсмтб" resolvedLetters={['a','b']}/>
                 <div className="fl__landing-space"/>
-                <LetterLanding colorSchema="vowel" lettersSet="уеёыаоэяию"/>
+                <LetterLanding colorSchema="vowel" lettersSet="уеёыаоэяию" resolvedLetters={['V', 'x']}/>
 
                 {/*
             <div className="fl__landing vowel">
