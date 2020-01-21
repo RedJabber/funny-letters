@@ -1,14 +1,19 @@
 import React, {FunctionComponent} from 'react';
 import Scores from "./Stats"
-import LetterLanding from "./LetterLending"
 import LetterGenerator from "./LetterGenerator"
 import "./styles.scss"
 import styles from "./index.module.scss"
 
 import TouchBackend from "react-dnd-touch-backend"
 import {DndProvider} from "react-dnd"
+import ConsonantsLanding from "./ConsonantsLanding";
+import VowelLanding from "./VowelLanding";
+import {LetterTypes} from "./LetterLendingTemplate/constants";
 
-const LetterSplitGame: FunctionComponent = () => (
+interface GameSettings {
+}
+
+const LetterSplitGame: FunctionComponent<GameSettings> = () => (
 
     <div className={styles.gameArea}>
         <Scores scores={267} lives={5}/>
@@ -16,9 +21,9 @@ const LetterSplitGame: FunctionComponent = () => (
             <div className="fl__landings">
                 <div className="fl__landing-space"/>
 
-                <LetterLanding colorSchema="consonant" lettersSet="йцкнгшщзхфвпрлджчсмтб" resolvedLetters={['a','b']}/>
+                <ConsonantsLanding colorSchema="consonant" lettersSet="йцкнгшщзхфвпрлджчсмтб"/>
                 <div className="fl__landing-space"/>
-                <LetterLanding colorSchema="vowel" lettersSet="уеёыаоэяию" resolvedLetters={['V', 'x']}/>
+                <VowelLanding colorSchema="vowel" lettersSet="уеёыаоэяию"/>
 
                 {/*
             <div className="fl__landing vowel">

@@ -1,12 +1,16 @@
-import React, {lazy, Suspense} from 'react';
-import logo from './logo.svg';
+import React, {} from 'react';
+// import logo from './logo.svg';
 import './App.css';
 // import {BrowserRouter, Link, Switch,Route} from "react-router-dom"
-import Game from "./letter-split"
+import Game, {} from "./letter-split"
+import store from "./letter-split/store"
+import {Provider} from "react-redux"
 
 const App: React.FC = () =>
     (
-        <Game/>
+        <Provider store={store}>
+            <Game />
+        </Provider>
         // <Menu/>
         // <Dialogs/>
     );
