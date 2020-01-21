@@ -18,11 +18,12 @@ enum StarType {
  */
 let Stars: FunctionComponent<{ scores: number }> = ({scores}) => {
     let stars: StarType[] = [];
-    let goldCount = scores / (GOLD_STAR_SCORES_STEP);
+    let goldCount = Math.trunc(scores / GOLD_STAR_SCORES_STEP);
+    console.log(goldCount);
     for (let i = 0; i < goldCount; i++) {
         stars.push(StarType.GOLD)
     }
-    if (scores % (GOLD_STAR_SCORES_STEP) > SILVER_STAR_SCORES_STEP) {
+    if (scores % (GOLD_STAR_SCORES_STEP) >= SILVER_STAR_SCORES_STEP) {
         stars.push(StarType.SILVER);
     }
 
