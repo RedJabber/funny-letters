@@ -12,28 +12,19 @@ import VowelLanding from "./VowelLanding";
 interface GameSettings {
 }
 
+const Luft = ()=>(<div className="fl__landing-space" />)
+
 const LetterSplitGame: FunctionComponent<GameSettings> = () => (
 
     <div className={styles.gameArea}>
         <Scores />
         <DndProvider backend={TouchBackend} options={({enableMouseEvents: true})}>
             <div className="fl__landings">
-                <div className="fl__landing-space"/>
-
+                <Luft />
                 <ConsonantsLanding colorSchema="consonant" lettersSet="йцкнгшщзхфвпрлджчсмтб"/>
-                <div className="fl__landing-space"/>
+                <Luft />
                 <VowelLanding colorSchema="vowel" lettersSet="уеёыаоэяию"/>
-
-                {/*
-            <div className="fl__landing vowel">
-                <div className="ok-letters-set"/>
-                <div className="fl__counters_group vowel">
-                    <div className="fl__counter success"/>
-                    <div className="fl__counter fail"/>
-                </div>
-            </div>
-            */}
-                <div className="fl__landing-space"/>
+                <Luft />
             </div>
             <LetterGenerator letter="Ф"/>
         </DndProvider>
