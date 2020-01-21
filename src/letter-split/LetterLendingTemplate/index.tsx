@@ -27,7 +27,7 @@ let LetterLending: FunctionComponent<StateProps & ResolveThunks<DispatchProps> &
             <div ref={drop} className={styles.landing + " " + styles[colorSchema]}
                  style={isOver ? {borderColor: "gray"} : {}}>
                 <div className={styles.lettersSet}>
-                    {resolvedLetters?.map(letter => <span>{letter}</span>)}
+                    {resolvedLetters?.map((letter, index) => <span key={index}>{letter}</span>)}
                 </div>
             </div>
         )

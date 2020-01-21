@@ -1,12 +1,14 @@
 import {connect} from "react-redux";
-import {DispatchProps, OwnProps, StateProps} from "./LetterLendingTemplate/types";
-import {letterDidNotGuess, letterGuessed} from "./LetterLendingTemplate/actions";
+import {DispatchProps} from "./LetterLendingTemplate/types";
+import {OwnProps, StateProps} from "./LetterLendingTemplate/types";
+import {letterDidNotGuess, letterGuessed} from "./actions";
 import LetterLandingTemplate from "./LetterLendingTemplate";
 import {LetterTypes} from "./LetterLendingTemplate/constants";
+import {RootState} from "./reducers";
 
-export default connect<StateProps, DispatchProps, OwnProps>((state: any) =>
+export default connect<StateProps, DispatchProps, OwnProps, RootState>(state =>
         ({
-            resolvedLetters: state.consonants?.resolvedLetters||[],
+            resolvedLetters: state.consonants.resolvedLetters,
             colorSchema: LetterTypes.CONSONANT
         }),
     {

@@ -1,11 +1,11 @@
 import React, {FunctionComponent} from "react";
-import {DragObjectWithType, useDrag} from "react-dnd"
-import {ItemType, DropResult} from "./types"
+import {useDrag} from "react-dnd"
+import {ItemType} from "./types"
 
 export const type = Symbol("LETTER");
 
 const Letter: FunctionComponent<{ letter: string }> = ({letter}) => {
-    const [{isDragging}, drag, connectPreview] = useDrag<ItemType, any, { isDragging: boolean }>({
+    const [{isDragging}, drag] = useDrag<ItemType, any, { isDragging: boolean }>({
         item: {letter, type: type},
         collect: monitor => ({
             isDragging: monitor.isDragging(),

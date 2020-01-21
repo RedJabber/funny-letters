@@ -8,7 +8,6 @@ import TouchBackend from "react-dnd-touch-backend"
 import {DndProvider} from "react-dnd"
 import ConsonantsLanding from "./ConsonantsLanding";
 import VowelLanding from "./VowelLanding";
-import {LetterTypes} from "./LetterLendingTemplate/constants";
 
 interface GameSettings {
 }
@@ -16,7 +15,7 @@ interface GameSettings {
 const LetterSplitGame: FunctionComponent<GameSettings> = () => (
 
     <div className={styles.gameArea}>
-        <Scores scores={267} lives={5}/>
+        <Scores />
         <DndProvider backend={TouchBackend} options={({enableMouseEvents: true})}>
             <div className="fl__landings">
                 <div className="fl__landing-space"/>
