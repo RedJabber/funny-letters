@@ -1,15 +1,7 @@
 define(["backbone", "jquery", "jquery-ui"], function (Backbone, $, initDrugnDropSupport) {
     const silent = true;
 
-    var LetterModel = Backbone.BaseModel.extend({idAttribute: 'letter',});
-    var LettersList = Backbone.BaseListView.extend({
-        className: 'fl__letters-set',
 
-        itemViewType: Backbone.BaseView.extend({
-            tagName: 'span',
-            template: '@{{: letter }}',
-        })
-    });
     return {
         View: Backbone.BaseView.extend({
             events: {

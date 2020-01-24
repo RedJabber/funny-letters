@@ -1,21 +1,18 @@
-import React, {Component} from "react";
+import React, {FunctionComponent} from "react";
 // import styles from "../LetterLending/index.module.scss";
 import Letter from "./Letter"
-class LetterGenerator extends Component<{letter?: string}, {}> {
+import {connect} from "react-redux";
+import {RootState} from "../reducers";
 
-    // private isMine(letter: string) {
-    //     return !!~this.props.lettersSet.indexOf(letter.toLowerCase());
-    // }
-
-    render() {
-        return (
-            <div className="fl__creation-area" style={{transform: "translate3d(0, 0, 0)"}}>
-                <div className="fl__letter-widget-shadow">{this.props.letter}</div>
-                <Letter letter={this.props.letter || "!"}/>
-            </div>
-            )
-    }
-
-}
-
-export default LetterGenerator;
+let LetterGenerator: FunctionComponent<{ letter: string, letters: string }> = ({letter, letters}) =>
+    (
+        <div className="fl__creation-area" style={{transform: "translate3d(0, 0, 0)"}}>
+            <div className="fl__letter-widget-shadow">{letter}</div>
+            <Letter letter={letter || "!"} letters={letters}/>
+        </div>
+    )
+// @ts-ignore
+export default connect<{letter: string,}, {}, { letters: string }, RootState>((rootState = {letter:"@"}, ownProps) => ({
+    letter: rootState.letter,
+    letters: ownProps.letters
+}))(LetterGenerator);

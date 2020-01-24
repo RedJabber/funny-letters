@@ -10,26 +10,29 @@ import ConsonantsLanding from "./ConsonantsLanding";
 import VowelLanding from "./VowelLanding";
 
 interface GameSettings {
+    consonants:string, vowels:string
 }
 
-const Luft = ()=>(<div className="fl__landing-space" />)
+const Luft = () => (<div className="fl__landing-space" />)
 
-const LetterSplitGame: FunctionComponent<GameSettings> = () => (
+const LetterSplitGame: FunctionComponent<GameSettings> = ({consonants, vowels}) => {
 
-    <div className={styles.gameArea}>
-        <Scores />
-        <DndProvider backend={TouchBackend} options={({enableMouseEvents: true})}>
-            <div className="fl__landings">
-                <Luft />
-                <ConsonantsLanding colorSchema="consonant" lettersSet="йцкнгшщзхфвпрлджчсмтб"/>
-                <Luft />
-                <VowelLanding colorSchema="vowel" lettersSet="уеёыаоэяию"/>
-                <Luft />
-            </div>
-            <LetterGenerator letter="Ф"/>
-        </DndProvider>
-    </div>
-
-);
+    return (
+        <div className={styles.gameArea}>
+            <Scores />
+            <DndProvider backend={TouchBackend}
+                         options={({enableMouseEvents: true, ignoreContextMenu: true, enableHoverOutsideTarget: true})}>
+                <div className="fl__landings">
+                    <Luft />
+                    <ConsonantsLanding colorSchema="consonant" lettersSet={consonants} />
+                    <Luft />
+                    <VowelLanding colorSchema="vowel" lettersSet={vowels} />
+                    <Luft />
+                </div>
+                <LetterGenerator letters={consonants + vowels}/>
+            </DndProvider>
+        </div>
+    )
+}
 
 export default LetterSplitGame;

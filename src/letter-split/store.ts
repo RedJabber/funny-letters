@@ -8,4 +8,5 @@ export default createStore<RootState, LendingActions, {}, {}>(reducers, {
     scores: 0,
     consonants: {resolvedLetters: []},
     vowels: {resolvedLetters: []},
+    letter: null
 })

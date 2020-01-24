@@ -1,15 +1,11 @@
-import {LetterDidNotGuessedAction, LetterGuessedAction} from "../actions";
+import {LetterTypes} from "./constants";
 
 export interface StateProps {
-    resolvedLetters?: string[]
+    resolvedLetters?: string[],
+    letterType: LetterTypes
 }
 
 export interface OwnProps {
     colorSchema: string
     lettersSet: string
-}
-
-export type DispatchProps = {
-    guessed: (letter: string) => LetterGuessedAction,
-    failed: (letter: string) => LetterDidNotGuessedAction,
 }
