@@ -8,31 +8,51 @@ import TouchBackend from "react-dnd-touch-backend"
 import {DndProvider} from "react-dnd"
 import ConsonantsLanding from "./ConsonantsLanding";
 import VowelLanding from "./VowelLanding";
+import GameOver from "./GameOver";
+import {connect} from "react-redux";
+import {RootState} from "./reducers";
 
 interface GameSettings {
-    consonants:string, vowels:string
+    consonants: string,
+    vowels: string
 }
 
-const Luft = () => (<div className="fl__landing-space" />)
+interface State {
+    lives: number
+}
 
-const LetterSplitGame: FunctionComponent<GameSettings> = ({consonants, vowels}) => {
+const Luft = () => (<div className="fl__landing-space"/>)
+
+const LetterSplitGame: FunctionComponent<GameSettings & State> = ({consonants, vowels, lives}) => {
 
     return (
         <div className={styles.gameArea}>
-            <Scores />
-            <DndProvider backend={TouchBackend}
-                         options={({enableMouseEvents: true, ignoreContextMenu: true, enableHoverOutsideTarget: true})}>
-                <div className="fl__landings">
-                    <Luft />
-                    <ConsonantsLanding colorSchema="consonant" lettersSet={consonants} />
-                    <Luft />
-                    <VowelLanding colorSchema="vowel" lettersSet={vowels} />
-                    <Luft />
-                </div>
-                <LetterGenerator letters={consonants + vowels}/>
-            </DndProvider>
+            <Scores/>
+            {
+                (lives > 0) ?
+                    (<DndProvider backend={TouchBackend}
+                                  options={({
+                                      enableMouseEvents: true,
+                                      ignoreContextMenu: true,
+                                      enableHoverOutsideTarget: true
+                                  })}>
+                        <div className="fl__landings">
+                            <Luft/>
+                            <ConsonantsLanding colorSchema="consonant" lettersSet={consonants}/>
+                            <Luft/>
+                            <VowelLanding colorSchema="vowel" lettersSet={vowels}/>
+                            <Luft/>
+                        </div>
+                        <LetterGenerator letters={consonants + vowels}/>
+                    </DndProvider>) :
+                    <GameOver/>
+            }
         </div>
     )
 }
 
-export default LetterSplitGame;
+export default connect<{ lives: number }, {}, GameSettings, RootState>(({lives}, {vowels, consonants}) => ({
+    lives,
+    vowels,
+    consonants
+}))(LetterSplitGame);

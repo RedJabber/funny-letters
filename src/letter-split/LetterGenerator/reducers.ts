@@ -1,10 +1,11 @@
 import {Reducer} from "react";
-import {LendingActions} from "../actions";
+import {GameActions} from "../actions";
 
-let reducer: Reducer<string, LendingActions> = (prevState, action) => {
+let reducer: Reducer<string, GameActions> = (prevState, action) => {
 
     //todo add blink on success/fail
-    return action.nextLetter || ""
+    // @ts-ignore
+    return action?.nextLetter || ""
 }
 
 export default reducer;

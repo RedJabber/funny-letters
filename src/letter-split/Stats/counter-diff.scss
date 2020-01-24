@@ -24,19 +24,7 @@
 
 }
 
-// Animation for counter
-@keyframes fl__score-counter-diff-inc-animation {
-  from {
-    //top: 100%;
-    opacity: 0.1;
-  }
-  50% {
-    //top: 0;
-    opacity: 1;
-  }
-  to {
-    //top: -100%;
-    opacity: 0.1;
-  }
-
+@keyframes fl__disappear {
+  from { opacity: 1 }
+  to { opacity: 0; background: #000; }
 }
