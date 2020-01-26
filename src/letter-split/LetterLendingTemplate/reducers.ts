@@ -14,7 +14,14 @@ let reducers: (guessedAction: Actions) => Reducer<StateProps, GameActions> =
             if (state === undefined) return {resolvedLetters: []};
             if (isGuessed(action)) {
                 let {letter} = action;
-                return ({resolvedLetters: [...state.resolvedLetters || [], letter]});
+                return {
+                    resolvedLetters:
+                        Object.keys([...state.resolvedLetters || [], letter]
+                            .reduce((m:{[name:string]:null}, letter) => {
+                                m[letter] = null;
+                                return m;
+                            }, {}))
+                };
             }
             if (action.type === Actions.RESTART_GAME) {
                 return ({resolvedLetters: []})

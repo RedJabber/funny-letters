@@ -20,7 +20,7 @@ let LetterLending: FunctionComponent<StateProps & OwnProps> =
             <div ref={drop}
                  className={styles.landing + " " + styles[colorSchema] + (isOver ? " " + styles.letterHover : "")}>
                 <div className={styles.lettersSet}>
-                    {resolvedLetters?.map((letter, index) => <span key={index}>{letter}</span>)}
+                    {resolvedLetters?.map((letter, index) => <span key={letter}>{letter}</span>)}
                 </div>
             </div>
         )
