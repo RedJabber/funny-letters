@@ -1,5 +1,6 @@
 import {LetterTypes} from "./LetterLendingTemplate/constants"
 import {Action} from "redux";
+import {access} from "fs";
 
 export enum Actions {
     CONSONANT_LETTER_GUESSED,
@@ -8,44 +9,62 @@ export enum Actions {
     RESTART_GAME
 }
 
-export interface LetterGuessedAction extends Action<Actions> {
+export interface LetterAction extends Action<Actions> {
     type: Actions,
     letter: string,
     nextLetter: string,
+    firstTime?: boolean
 }
 
-export interface ConsonantLetterGuessedAction extends LetterGuessedAction {
+
+export interface ConsonantLetterGuessedAction extends LetterAction {
     type: typeof Actions.CONSONANT_LETTER_GUESSED,
 }
-export interface VowelLetterGuessedAction extends LetterGuessedAction {
+
+export interface VowelLetterGuessedAction extends LetterAction {
     type: typeof Actions.VOWEL_LETTER_GUESSED,
 }
 
-export interface LetterDidNotGuessedAction extends Action<Actions> {
+export interface LetterDidNotGuessedAction extends LetterAction {
     type: typeof Actions.LETTER_DIDNT_GUESSED,
-    nextLetter: string,
 }
+
 export interface RestartAction extends Action<Actions> {
     type: typeof Actions.RESTART_GAME
 }
 
-export type GameActions = ConsonantLetterGuessedAction | VowelLetterGuessedAction | LetterDidNotGuessedAction | RestartAction
+export type GameActions =
+    ConsonantLetterGuessedAction
+    | VowelLetterGuessedAction
+    | LetterDidNotGuessedAction
+    | RestartAction
 
-export let letterGuessedFactory = (letterType: LetterTypes)=> {
+export function isLetterAction(action: GameActions): action is LetterAction {
+    return action.type === Actions.CONSONANT_LETTER_GUESSED ||
+        action.type === Actions.LETTER_DIDNT_GUESSED ||
+        action.type === Actions.VOWEL_LETTER_GUESSED;
+}
+
+
+export let letterGuessedFactory = (letterType: LetterTypes) => {
     const type = letterType === LetterTypes.CONSONANT ? Actions.CONSONANT_LETTER_GUESSED : Actions.VOWEL_LETTER_GUESSED;
-    return (letter: string, nextLetter: string): GameActions => {
+    return (letter: string, isNew: boolean, nextLetter: string): GameActions => {
         return {
             type,
             letter,
-            nextLetter
+            nextLetter,
+            firstTime: isNew
         }
     };
 }
 
-export function letterDidNotGuess(nextLetter: string): LetterDidNotGuessedAction {
+
+export function letterDidNotGuess(letter: string, isNew: boolean, nextLetter: string): LetterDidNotGuessedAction {
     return {
         type: Actions.LETTER_DIDNT_GUESSED,
-        nextLetter
+        letter,
+        nextLetter,
+        firstTime: isNew
     }
 }
 

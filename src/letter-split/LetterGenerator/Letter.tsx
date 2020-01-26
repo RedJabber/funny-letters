@@ -1,33 +1,39 @@
 import React, {FunctionComponent} from "react";
-import {useDrag} from "react-dnd"
+import {connect} from "react-redux";
+import {DragSourceMonitor, useDrag} from "react-dnd"
 import {ItemType, LetterDropResult} from "./types"
 import {type} from "./constants"
 import {LetterTypes} from "../LetterLendingTemplate/constants";
-import {connect} from "react-redux";
 import {RootState} from "../reducers";
 import {letterDidNotGuess, letterGuessedFactory} from "../actions"
 
-type OwnProps = { letter: string };
+type OwnProps = {
+    letter: string
+    letters: string
+    resolvedLetters: Set<string>
+};
 type DispatchProps = {
     guessed: (letter: string, letterType: LetterTypes) => void
-    failed: () => void
+    failed: (letter: string) => void
 }
-const Letter: FunctionComponent<OwnProps & DispatchProps> = ({letter, guessed, failed}) => {
+export type StateProps = {}
+
+const Letter: FunctionComponent<StateProps & OwnProps & DispatchProps> = ({letter, guessed, failed}: StateProps & OwnProps & DispatchProps) => {
     const [{isDragging}, drag] = useDrag<ItemType, LetterDropResult, { isDragging: boolean }>({
         item: {letter, type: type},
-        collect: monitor => ({
+        collect: (monitor: DragSourceMonitor) => ({
             isDragging: monitor.isDragging(),
         }),
-        end: (item, monitor) => {
-
-            let dropResult = monitor.getDropResult();
+        end: (ignored: any, monitor: DragSourceMonitor) => {
+            let dropResult: LetterDropResult = monitor.getDropResult();
             if (dropResult == null) {
                 return;
             }
             if (dropResult.guessed) {
-                return guessed(letter, dropResult.letterType);
+                guessed(letter, dropResult.letterType);
+                return;
             }
-            failed()
+            failed(letter)
         }
     });
     return (
@@ -38,22 +44,20 @@ const Letter: FunctionComponent<OwnProps & DispatchProps> = ({letter, guessed, f
 
 const consonantLetterGuessed = letterGuessedFactory(LetterTypes.CONSONANT);
 const vowelLetterGuessed = letterGuessedFactory(LetterTypes.VOWEL);
-const createLetterGenerator = (letters:string) =>()=> letters[Math.floor(Math.random() * letters.length)].toUpperCase();
-// @ts-ignore
-export default connect<{}, {guessed, failed}, { letters: string, letter: string}, RootState>(
-    ({letter}, {letters}) => {
-        return ({letter: letter || createLetterGenerator(letters)()});
-    },
-    (dispatch, {letters}): DispatchProps => {
+const createLetterGenerator = (letters: string) => () => letters[Math.floor(Math.random() * letters.length)].toUpperCase();
 
+export default connect<StateProps, DispatchProps, OwnProps, RootState>(
+    (ignored, {letters, letter}) => ({letter: letter || createLetterGenerator(letters)()}),
+    (dispatch, {letters, resolvedLetters}: OwnProps): DispatchProps => {
         let generateNextLetter = createLetterGenerator(letters)
+        let nextLetter = generateNextLetter();
         return {
             guessed(letter, letterType) {
                 let guessed = letterType === LetterTypes.CONSONANT ? consonantLetterGuessed : vowelLetterGuessed;
-                dispatch(guessed(letter, generateNextLetter()))
+                dispatch(guessed(letter, !resolvedLetters.has(letter), nextLetter))
             },
-            failed() {
-                dispatch(letterDidNotGuess(generateNextLetter()))
+            failed(letter) {
+                dispatch(letterDidNotGuess(letter, !resolvedLetters.has(letter), nextLetter))
             }
         }
     })(Letter);

@@ -1,4 +1,4 @@
-import {Actions, GameActions, LetterGuessedAction} from "../actions"
+import {Actions, GameActions, LetterAction} from "../actions"
 import {StateProps} from "./types"
 import {Reducer} from "redux";
 
@@ -6,7 +6,7 @@ import {Reducer} from "redux";
 // @ts-ignore
 let reducers: (guessedAction: Actions) => Reducer<StateProps, GameActions> =
     guessedAction => {
-        function isGuessed(action: GameActions): action is LetterGuessedAction {
+        function isGuessed(action: GameActions): action is LetterAction {
             return action.type === guessedAction;
         }
 
