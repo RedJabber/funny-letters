@@ -1,7 +1,7 @@
 import React, {FunctionComponent} from "react";
 
 import heartIcon from "./heart.svg";
-import styles from "./LivesCounter.module.scss";
+import styles from "./index.module.scss";
 
 const LivesCounter: FunctionComponent<{ livesCount: number }> = ({livesCount}) => {
     let hearts = [];

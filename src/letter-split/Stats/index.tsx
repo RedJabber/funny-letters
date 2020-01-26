@@ -14,8 +14,10 @@ let Stats: FunctionComponent<Props> = ({scores, lives}) => (
         <span className={styles.title}>Р<span>а</span>ск<span>и</span>д<span>a</span>йк<span>a</span></span>
         <Scores scores={scores}/>
         <ScoresDiff diff={32}/>
-        <LivesCounter livesCount={lives}/>
-        <Stars scores={scores}/>
+        <div className={styles.heartsAndStarsGroup}>
+            <Stars scores={scores}/>
+            <LivesCounter livesCount={lives}/>
+        </div>
     </div>
 );
 export default connect<Props, {}, {}, RootState>(({scores, lives}) => ({scores, lives}))(Stats)

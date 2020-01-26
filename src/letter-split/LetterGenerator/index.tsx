@@ -3,11 +3,12 @@ import React, {FunctionComponent} from "react";
 import Letter from "./Letter"
 import {connect} from "react-redux";
 import {RootState} from "../reducers";
+import styles from "./index.module.scss"
 
 let LetterGenerator: FunctionComponent<{ letter: string, letters: string, resolvedLetters: Set<string> }> = ({letter, letters, resolvedLetters}) =>
     (
-        <div className="fl__creation-area">
-            <div className="fl__letter-widget-shadow">{letter}</div>
+        <div className={styles.creationArea}>
+            <div className={styles.letterShadow}>{letter}</div>
             <Letter letter={letter} letters={letters} resolvedLetters={resolvedLetters}/>
         </div>
     )

@@ -1,77 +1,16 @@
 .fl__ {
 
-  &stars-area {
-    position: absolute;
-    right: 0;
-    top: 3px;
-    display: flex;
-    flex-direction: row-reverse;
-    &-star {
-      display: inline-block;
-      width: 30px;
-      height: 30px;
-      &:nth-child(n+2) {
-        margin-right: -20px
-      }
+  &stars-area-star {
+    display: inline-block;
+    width: 30px;
+    height: 30px;
+
+    &:nth-child(n+2) {
+      margin-right: -20px
     }
   }
 
 
-  &creation-area {
-    position: fixed;
-    left: 0;
-    right: 0;
-    top: calc(50% - 45px);
-    background: hsl(30, 50%, 80%);
-
-    margin: 0 auto;
-    border: 2px solid #808080;
-    width: 90px;
-    height: 90px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50%;
-    color: hsla(39, 90%, 30%, 0.9);
-  }
-  &letter-widget {
-    display: flex;
-    width: 80px;
-    height: 80px;
-    position: relative;
-
-    background: hsla(0, 0%, 40%, 0.8);
-    border-radius: 50%;
-    align-items: center;
-    justify-content: center;
-    font-size: 60px;
-    font-family: serif;
-    color: wheat;
-    &.new {
-      cursor: url(./circle.svg) 5 5, none;
-      left: 0;
-      //right: 5px;
-      top: 0;
-      &.ui-draggable-dragging {
-
-      }
-    }
-    &-shadow {
-      position: absolute;
-      left: 5px;
-      right: 5px;
-      top: 5px;
-      bottom: 5px;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      font-size: 60px;
-      font-family: serif;
-    }
-  }
   &landings {
     width: 100%;
     //height: ~"calc(100vh)";
@@ -83,6 +22,7 @@
     align-items: stretch;
     background: antiquewhite;
   }
+
   &landing-space {
     flex: 0 0 15px;
   }
@@ -96,15 +36,18 @@
     display: flex;
     flex-direction: column;
     align-items: stretch;
+
     &.consonant-letters {
       background: hsla(240, 100%, 90%, .3);
       border-radius: 8px 0 0 8px;
     }
+
     &.vowel {
       background: hsla(0, 100%, 90%, .3);
       border-radius: 0 8px 8px 0;
     }
   }
+
   &counter {
     //font-weight: 600;
 
@@ -113,10 +56,12 @@
     justify-content: center;
     display: flex;
     font-family: Calibri, 'Courier New', 'Tahoma';
+
     &.success {
       color: hsl(120, 100%, 25%);
       font-size: 72px;
     }
+
     &.fail {
       color: hsl(0, 100%, 40%);
       font-size: 42px;

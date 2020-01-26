@@ -6,6 +6,7 @@ import {type} from "./constants"
 import {LetterTypes} from "../LetterLendingTemplate/constants";
 import {RootState} from "../reducers";
 import {letterDidNotGuess, letterGuessedFactory} from "../actions"
+import styles from "./index.module.scss"
 
 type OwnProps = {
     letter: string
@@ -37,7 +38,7 @@ const Letter: FunctionComponent<StateProps & OwnProps & DispatchProps> = ({lette
         }
     });
     return (
-        <div ref={drag} className="fl__letter-widget new"
+        <div ref={drag} className={styles.letterNew}
              style={isDragging ? {opacity: 0.8, color: "#333", backgroundColor: "wheat"} : {}}>{letter}</div>
     )
 }

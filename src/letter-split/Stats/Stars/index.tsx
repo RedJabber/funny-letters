@@ -1,6 +1,7 @@
 import React, {FunctionComponent} from "react";
 import goldStarIcon from "./gold-star.svg";
 import silverStarIcon from "./silver-star.svg";
+import styles from "./index.module.scss"
 
 const SILVER_STAR_SCORES_STEP = 50;
 const GOLD_STAR_SCORES_STEP = SILVER_STAR_SCORES_STEP * 2;
@@ -27,7 +28,7 @@ let Stars: FunctionComponent<{ scores: number }> = ({scores}) => {
     }
 
     return (
-        <div className="fl__stars-area">
+        <div className={styles.starsArea}>
             {
                 stars.map((type, i) => <div key={i} className="fl__stars-area-star">
                     <img alt="heart" src={type === StarType.SILVER ? silverStarIcon : goldStarIcon} width="30"
