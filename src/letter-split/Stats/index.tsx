@@ -7,15 +7,16 @@ import ScoresDiff from "./ScoresDiff";
 import Stars from "./Stars";
 import {connect} from "react-redux";
 import {RootState} from "../reducers";
+import {ScoresProps} from "./types";
 
-type Props = { scores: number, lives: number };
+type Props = { scores: ScoresProps, lives: number };
 let Stats: FunctionComponent<Props> = ({scores, lives}) => (
     <div className={styles.scoreArea}>
         <span className={styles.title}>Р<span>а</span>ск<span>и</span>д<span>a</span>йк<span>a</span></span>
-        <Scores scores={scores}/>
-        <ScoresDiff diff={32}/>
+        <Scores scores={scores.scores}/>
+        <ScoresDiff diff={scores.scoresDiff}/>
         <div className={styles.heartsAndStarsGroup}>
-            <Stars scores={scores}/>
+            <Stars scores={scores.scores}/>
             <LivesCounter livesCount={lives}/>
         </div>
     </div>

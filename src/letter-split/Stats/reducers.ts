@@ -1,16 +1,26 @@
 import {Reducer} from "react";
 import {Actions, GameActions, isLetterAction} from "../actions";
+import {ScoresProps} from "./types";
 
 const SCORES_INCREMENT = 5;
-export let scoresReducer: Reducer<number, GameActions> =
-    (scores = 0, action) => {
-    let {type} = action;
+export let scoresReducer: Reducer<ScoresProps, GameActions> =
+    (scores = {scores: 0, scoresDiff: 0}, action) => {
+        let {type} = action;
         switch (type) {
             case Actions.CONSONANT_LETTER_GUESSED:
             case Actions.VOWEL_LETTER_GUESSED:
-                return scores + ((isLetterAction(action) && action.firstTime)? 3 * SCORES_INCREMENT : SCORES_INCREMENT);
+                let scoresDiff = (isLetterAction(action) && action.firstTime) ? 3 * SCORES_INCREMENT : SCORES_INCREMENT
+                return {
+                    scores: scores.scores + scoresDiff,
+                    scoresDiff
+                }
+            case Actions.LETTER_DIDNT_GUESSED:
+                return {
+                    ...scores,
+                    scoresDiff: 0
+                }
             case Actions.RESTART_GAME:
-                return 0;
+                return {scores: 0, scoresDiff: 0};
             default:
                 return scores;
         }

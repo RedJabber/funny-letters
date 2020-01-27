@@ -5,9 +5,10 @@ import lendingReducer from "./LetterLendingTemplate/reducers";
 import {StateProps as LettersLandingState} from "./LetterLendingTemplate/types";
 import {Actions} from "./actions";
 import {GuessState} from "./LetterGenerator/types";
+import {ScoresProps} from "./Stats/types";
 
 export type RootState = Readonly<{
-    scores: number,
+    scores: ScoresProps,
     lives: number,
     consonants: LettersLandingState,
     vowels: LettersLandingState,
