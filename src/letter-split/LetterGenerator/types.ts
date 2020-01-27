@@ -10,6 +10,12 @@ export interface LetterGuessedOnDrop {
     letterType: LetterTypes
 }
 
+export  enum GuessState {
+    GUESSED,
+    FAILED,
+    NONE
+}
+
 export interface LetterGuessFailed {
     readonly guessed: false;
 }

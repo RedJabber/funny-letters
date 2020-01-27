@@ -1,9 +1,10 @@
 import {combineReducers} from "redux";
 import {livesReducer, scoresReducer} from "./Stats/reducers";
-import {letterReducer,resolvedLettersReducer} from "./LetterGenerator/reducers";
+import {lastGuessStateReducer, letterReducer, resolvedLettersReducer} from "./LetterGenerator/reducers";
 import lendingReducer from "./LetterLendingTemplate/reducers";
 import {StateProps as LettersLandingState} from "./LetterLendingTemplate/types";
 import {Actions} from "./actions";
+import {GuessState} from "./LetterGenerator/types";
 
 export type RootState = Readonly<{
     scores: number,
@@ -12,6 +13,7 @@ export type RootState = Readonly<{
     vowels: LettersLandingState,
     letter?: string
     resolvedLetters: Set<string>
+    lastGuessState: GuessState
 }>
 
 export default combineReducers({
@@ -21,4 +23,5 @@ export default combineReducers({
     consonants: lendingReducer(Actions.CONSONANT_LETTER_GUESSED),
     letter: letterReducer,
     resolvedLetters: resolvedLettersReducer,
+    lastGuessState: lastGuessStateReducer,
 });

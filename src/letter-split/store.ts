@@ -1,6 +1,7 @@
 import {createStore} from "redux"
 import reducers, {RootState} from "./reducers"
 import {GameActions} from "./actions"
+import {GuessState} from "./LetterGenerator/types";
 
 // @ts-ignore
 export default createStore<RootState, GameActions, {}, {}>(reducers, {
@@ -8,5 +9,6 @@ export default createStore<RootState, GameActions, {}, {}>(reducers, {
     scores: 0,
     consonants: {resolvedLetters: []},
     vowels: {resolvedLetters: []},
-    letter: null
+    letter: null,
+    lastGuessState: GuessState.NONE
 })
