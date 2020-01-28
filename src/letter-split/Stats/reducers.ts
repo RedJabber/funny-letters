@@ -26,14 +26,23 @@ export let scoresReducer: Reducer<ScoresProps, GameActions> =
         }
     }
 
-export let livesReducer: Reducer<number, GameActions> =
-    (lives = 10, action) => {
+const NEW_LIFE_BORDER = 100;
+export let livesReducer =
+    (lives: number, lifeGrowBar: number, scoresDiff: number, action: GameActions) => {
         switch (action.type) {
+            case Actions.CONSONANT_LETTER_GUESSED:
+            case Actions.VOWEL_LETTER_GUESSED:
+                lifeGrowBar += scoresDiff
+                if (lifeGrowBar >= NEW_LIFE_BORDER) {
+                    lives++;
+                    lifeGrowBar %= NEW_LIFE_BORDER;
+                }
+                return {lives, lifeGrowBar}
             case Actions.LETTER_DIDNT_GUESSED:
-                return --lives;
+                return {lives: --lives, lifeGrowBar};
             case Actions.RESTART_GAME:
-                return 5;
+                return {lives: 5, lifeGrowBar: 0};
             default:
-                return lives;
+                return {lives, lifeGrowBar};
         }
     }

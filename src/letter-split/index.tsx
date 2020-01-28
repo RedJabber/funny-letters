@@ -51,8 +51,8 @@ const LetterSplitGame: FunctionComponent<GameSettings & State> = ({consonants, v
     )
 }
 
-export default connect<{ lives: number }, {}, GameSettings, RootState>(({lives}, {vowels, consonants}) => ({
-    lives,
+export default connect<State, {}, GameSettings, RootState>(({lives}, {vowels, consonants}) => ({
+    lives: lives.lives,
     vowels,
     consonants
 }))(LetterSplitGame);

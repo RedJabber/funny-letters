@@ -5,10 +5,11 @@ import {GuessState} from "./LetterGenerator/types";
 
 // @ts-ignore
 export default createStore<RootState, GameActions, {}, {}>(reducers, {
-    lives: 5,
+    lives: {
+        lives: 5, lifeGrowBar: 0
+    },
     scores: {
-        scores: 0,
-        scoresDiff: 0
+        scores: 0, scoresDiff: 0
     },
     consonants: {resolvedLetters: []},
     vowels: {resolvedLetters: []},

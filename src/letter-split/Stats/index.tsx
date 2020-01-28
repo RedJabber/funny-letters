@@ -21,4 +21,4 @@ let Stats: FunctionComponent<Props> = ({scores, lives}) => (
         </div>
     </div>
 );
-export default connect<Props, {}, {}, RootState>(({scores, lives}) => ({scores, lives}))(Stats)
+export default connect<Props, {}, {}, RootState>(({scores, lives}) => ({scores, lives: lives.lives}))(Stats)
